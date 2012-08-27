@@ -1,0 +1,6 @@
+node_modules
+test/*.js
+test/*.css
+components
+build
+.DS_Store

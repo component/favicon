@@ -1,0 +1,8 @@
+{
+  "name": "favicon",
+  "description": "Dynamic favicon replacement component",
+  "version": "0.0.4",
+  "keywords": ["favicon", "image", "ui", "canvas"],
+  "dependencies": {},
+  "scripts": ["index.js"]
+}
