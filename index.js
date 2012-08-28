@@ -1,5 +1,21 @@
 
-module.exports = set;
+/**
+ * Original favicon.
+ */
+
+var orig;
+
+/**
+ * Expose `set()`.
+ */
+
+exports = module.exports = set;
+
+/**
+ * Expose `reset()`.
+ */
+
+exports.reset = reset;
 
 /**
  * Set the favicon to the given data uri `str`.
@@ -10,12 +26,24 @@ module.exports = set;
 
 function set(str) {
   if ('string' != typeof str) throw new TypeError('data uri string expected');
-  remove();
+  var prev = remove();
+  if (!orig) orig = prev;
   var link = document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'icon';
   link.href = str;
   head().appendChild(link);
+}
+
+/**
+ * Reset to the original favicon.
+ *
+ * @api public
+ */
+
+function reset() {
+  remove();
+  if (orig) head().appendChild(orig);
 }
 
 /**
@@ -39,6 +67,7 @@ function current() {
 /**
  * Remove current favicon link with rel=icon.
  *
+ * @return {Element}
  * @api private
  */
 
@@ -46,6 +75,7 @@ function remove() {
   var link = current();
   if (!link) return;
   head().removeChild(link);
+  return link;
 }
 
 /**
