@@ -38,6 +38,10 @@ setInterval(function(){
 
   Set the favicon to the given data uri `string`.
 
+### icon.reset()
+
+  Reset to the original favicon.
+
 ## License
 
   MIT
