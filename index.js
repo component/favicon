@@ -30,7 +30,9 @@ function current() {
   var links = document.getElementsByTagName('link');
   for (var i = 0; i < links.length; ++i) {
     rel = links[i].getAttribute('rel') || '';
-    if ('icon' == rel) return links[i];
+    if (rel.match(/\bicon\b/)) {
+      return links[i];
+    }
   }
 }
 
