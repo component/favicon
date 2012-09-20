@@ -1,5 +1,5 @@
 {
-  "name": "favicon",
+  "name": "favicon-component",
   "description": "Dynamic favicon replacement component",
   "version": "0.0.4",
   "keywords": ["favicon", "image", "ui", "canvas"],
