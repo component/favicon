@@ -42,6 +42,10 @@ setInterval(function(){
 
   Reset to the original favicon.
 
+### icon.current()
+
+  Return the current favicon link when present.
+
 ## License
 
   MIT

@@ -18,6 +18,12 @@ exports = module.exports = set;
 exports.reset = reset;
 
 /**
+ * Expose `current()`.
+ */
+
+exports.current = current;
+
+/**
  * Set the favicon to the given data uri `str`.
  *
  * @param {String} str
