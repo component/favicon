@@ -18,12 +18,6 @@ exports = module.exports = set;
 exports.reset = reset;
 
 /**
- * Expose `current()`.
- */
-
-exports.current = current;
-
-/**
  * Set the favicon to the given data uri `str`.
  *
  * @param {String} str
@@ -32,13 +26,43 @@ exports.current = current;
 
 function set(str) {
   if ('string' != typeof str) throw new TypeError('data uri string expected');
-  var prev = remove();
-  if (!orig) orig = prev;
-  var link = document.createElement('link');
-  link.type = 'image/x-icon';
-  link.rel = 'icon';
-  link.href = str;
-  head().appendChild(link);
+
+  // orig
+  var el = link();
+  if (el && !orig) orig = el.href;
+
+  // create
+  if (!el) {
+    el = create();
+    head().appendChild(el);
+  }
+
+  el.href = str;
+}
+
+/**
+ * Return the favicon link.
+ *
+ * @return {Element}
+ * @api private
+ */
+
+function link() {
+  return document.querySelector('link[rel=icon]');
+}
+
+/**
+ * Create a new link.
+ *
+ * @return {Element}
+ * @api private
+ */
+
+function create() {
+  var el = document.createElement('link');
+  el.type = 'image/x-icon';
+  el.rel = 'icon';
+  return el;
 }
 
 /**
@@ -48,40 +72,14 @@ function set(str) {
  */
 
 function reset() {
-  remove();
-  if (orig) head().appendChild(orig);
-}
+  var el = document.querySelector('link[rel=icon]');
 
-/**
- * Return current favicon link with rel=icon.
- *
- * @return {Element}
- * @api private
- */
-
-function current() {
-  var rel;
-  var links = document.getElementsByTagName('link');
-  for (var i = 0; i < links.length; ++i) {
-    rel = links[i].getAttribute('rel') || '';
-    if (rel.match(/\bicon\b/)) {
-      return links[i];
-    }
+  if (!orig) {
+    head().removeChild(el);
+    return;
   }
-}
 
-/**
- * Remove current favicon link with rel=icon.
- *
- * @return {Element}
- * @api private
- */
-
-function remove() {
-  var link = current();
-  if (!link) return;
-  head().removeChild(link);
-  return link;
+  el.href = orig;
 }
 
 /**
