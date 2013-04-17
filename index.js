@@ -74,7 +74,7 @@ function create() {
 function reset() {
   var el = document.querySelector('link[rel=icon]');
 
-  if (!orig) {
+  if (!orig && el) {
     head().removeChild(el);
     return;
   }
