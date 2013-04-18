@@ -73,13 +73,13 @@ function create() {
 
 function reset() {
   var el = document.querySelector('link[rel=icon]');
+  if (!el) return;
 
-  if (!orig && el) {
+  if (orig) {
+    el.href = orig;
+  } else {
     head().removeChild(el);
-    return;
   }
-
-  el.href = orig;
 }
 
 /**
