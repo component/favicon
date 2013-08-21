@@ -2,11 +2,20 @@
   "name": "favicon-component",
   "description": "Dynamic favicon replacement component",
   "version": "1.0.2",
-  "keywords": ["favicon", "image", "ui", "canvas"],
+  "keywords": [
+    "favicon",
+    "image",
+    "ui",
+    "canvas"
+  ],
   "dependencies": {},
   "component": {
     "scripts": {
       "favicon/index.js": "index.js"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/component/favicon.git"
   }
 }
