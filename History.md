@@ -1,4 +1,9 @@
 
+1.0.3 / 2013-08-23 
+==================
+
+ * refactor using replacment to attempt cache busting
+
 1.0.2 / 2013-04-18 
 ==================
 
