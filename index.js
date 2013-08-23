@@ -26,18 +26,18 @@ exports.reset = reset;
 
 function set(str) {
   if ('string' != typeof str) throw new TypeError('data uri string expected');
-
+  
   // orig
   var el = link();
-  if (el && !orig) orig = el.href;
+  if (el) orig = orig || el.href;
 
-  // create
-  if (!el) {
-    el = create();
-    head().appendChild(el);
-  }
+  // remove old tag
+  remove();
 
+  // new one
+  var el = create();
   el.href = str;
+  head().appendChild(el);
 }
 
 /**
@@ -49,6 +49,17 @@ function set(str) {
 
 function link() {
   return document.querySelector('link[rel=icon]');
+}
+
+/**
+ * Remove the favicon link.
+ *
+ * @api private
+ */
+
+function remove() {
+  var el = link();
+  if (el) el.parentNode.removeChild(el);
 }
 
 /**
@@ -72,13 +83,10 @@ function create() {
  */
 
 function reset() {
-  var el = document.querySelector('link[rel=icon]');
-  if (!el) return;
-
   if (orig) {
-    el.href = orig;
+    set(orig);
   } else {
-    head().removeChild(el);
+    remove();
   }
 }
 
